@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bayar Tagihan Digital</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs" defer></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="max-w-3xl w-full bg-white p-8 rounded-xl shadow-lg">
+        <h2 class="text-3xl font-bold text-center text-blue-600 mb-6">Bayar Tagihan Digital</h2>
+        <p class="text-center text-gray-500 mb-8">Bayar berbagai tagihan seperti PDAM, BPJS, internet, dan lainnya dengan cepat dan aman.</p>
+        
+        <form class="space-y-6" x-data="{ jenis: '', showSummary: false }" @submit.prevent="showSummary = true">
+            <!-- Jenis Tagihan -->
+            <div>
+                <label for="jenis-tagihan" class="block text-sm font-medium text-gray-700">Jenis Tagihan</label>
+                <select id="jenis-tagihan" x-model="jenis" 
+                        class="w-full mt-2 p-3 border rounded-lg focus:ring-blue-500 focus:outline-none">
+                    <option value="" disabled selected>Pilih Jenis Tagihan</option>
+                    <option value="PDAM">PDAM</option>
+                    <option value="BPJS">BPJS</option>
+                    <option value="Internet">Internet</option>
+                    <option value="Lainnya">Lainnya</option>
+                </select>
+            </div>
+            
+            <!-- ID Tagihan -->
+            <div>
+                <label for="id-tagihan" class="block text-sm font-medium text-gray-700">ID Pelanggan/Tagihan</label>
+                <input type="text" id="id-tagihan" placeholder="Masukkan ID Pelanggan atau Nomor Tagihan" 
+                       class="w-full mt-2 p-3 border rounded-lg focus:ring-blue-500 focus:outline-none">
+            </div>
+            
+            <!-- Ringkasan -->
+            <div x-show="showSummary" class="bg-gray-50 p-4 rounded-lg text-gray-600">
+                <p><strong>Jenis Tagihan:</strong> <span x-text="jenis || '---'"></span></p>
+                <p><strong>ID Pelanggan:</strong> <span id="idSummary">---</span></p>
+                <p class="text-green-600 font-bold mt-2">Pastikan informasi sudah benar sebelum melanjutkan.</p>
+            </div>
+            
+            <!-- Tombol -->
+            <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition">
+                Bayar Sekarang
+            </button>
+        </form>
+    </div>
+</body>
+</html>

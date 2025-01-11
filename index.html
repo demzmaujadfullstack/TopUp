@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PulsaKu - Isi Pulsa & Bayar Tagihan Online</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.13.3/cdn.min.js" defer></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
+    <!-- Navbar -->
+    <nav x-data="{ isOpen: false }" class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="flex items-center">
+                        <i data-feather="zap" class="w-8 h-8 text-blue-600"></i>
+                        <span class="ml-2 text-xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">PulsaKu</span>
+                    </div>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#" class="flex items-center space-x-1 text-gray-700 hover:text-blue-600 transition-colors">
+                        <i data-feather="home" class="w-4 h-4"></i>
+                        <span>Beranda</span>
+                    </a>
+                    <a href="#layanan" class="flex items-center space-x-1 text-gray-700 hover:text-blue-600 transition-colors">
+                        <i data-feather="grid" class="w-4 h-4"></i>
+                        <span>Layanan</span>
+                    </a>
+                    <a href="#promo" class="flex items-center space-x-1 text-gray-700 hover:text-blue-600 transition-colors">
+                        <i data-feather="tag" class="w-4 h-4"></i>
+                        <span>Promo</span>
+                    </a>
+                    <button class="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition-colors flex items-center space-x-2">
+                        <i data-feather="user" class="w-4 h-4"></i>
+                        <span>Masuk</span>
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button @click="isOpen = !isOpen" class="p-2 text-gray-700">
+                        <i data-feather="menu" x-show="!isOpen" class="w-6 h-6"></i>
+                        <i data-feather="x" x-show="isOpen" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div x-show="isOpen" x-transition class="md:hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-md transition-colors">Beranda</a>
+                <a href="#layanan" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-md transition-colors">Layanan</a>
+                <a href="#promo" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-md transition-colors">Promo</a>
+                <button class="w-full mt-2 bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition-colors">Masuk</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="bg-gradient-to-r from-blue-600 to-blue-400 text-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="text-center md:text-left">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4 leading-tight">Bayar Lebih Mudah dengan PulsaKu</h1>
+                    <p class="text-xl mb-8 text-blue-100">Solusi pembayaran digital terlengkap untuk semua kebutuhan Anda</p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                        <button class="bg-white text-blue-600 px-8 py-3 rounded-full font-semibold hover:bg-blue-50 transition-colors shadow-lg">
+                            Mulai Sekarang
+                        </button>
+                        <button class="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-blue-600 transition-colors">
+                            Pelajari Lebih Lanjut
+                        </button>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="float-animation">
+                        <img src="/api/placeholder/600/400" alt="Hero illustration" class="w-full h-auto rounded-lg shadow-2xl">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Access Section -->
+    <div class="max-w-7xl mx-auto px-4 -mt-8">
+        <div class="bg-white rounded-xl shadow-xl p-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <button class="p-4 hover:bg-blue-50 rounded-lg transition-colors group">
+                    <div class="flex flex-col items-center">
+                        <div class="text-blue-600 mb-2 group-hover:scale-110 transition-transform">
+                            <i data-feather="phone" class="w-8 h-8"></i>
+                        </div>
+                        <span class="text-sm font-medium text-gray-700">Pulsa</span>
+                    </div>
+                </button>
+                <button class="p-4 hover:bg-blue-50 rounded-lg transition-colors group">
+                    <div class="flex flex-col items-center">
+                        <div class="text-blue-600 mb-2 group-hover:scale-110 transition-transform">
+                            <i data-feather="wifi" class="w-8 h-8"></i>
+                        </div>
+                        <span class="text-sm font-medium text-gray-700">Paket Data</span>
+                    </div>
+                </button>
+                <button class="p-4 hover:bg-blue-50 rounded-lg transition-colors group">
+                    <div class="flex flex-col items-center">
+                        <div class="text-blue-600 mb-2 group-hover:scale-110 transition-transform">
+                            <i data-feather="zap" class="w-8 h-8"></i>
+                        </div>
+                        <span class="text-sm font-medium text-gray-700">Token Listrik</span>
+                    </div>
+                </button>
+                <button class="p-4 hover:bg-blue-50 rounded-lg transition-colors group">
+                    <div class="flex flex-col items-center">
+                        <div class="text-blue-600 mb-2 group-hover:scale-110 transition-transform">
+                            <i data-feather="credit-card" class="w-8 h-8"></i>
+                        </div>
+                        <span class="text-sm font-medium text-gray-700">Tagihan</span>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <div id="layanan" class="max-w-7xl mx-auto px-4 py-16">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold mb-4">Layanan Unggulan</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">Nikmati berbagai layanan terbaik dari PulsaKu untuk memenuhi kebutuhan digital Anda</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Pulsa Card -->
+            <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
+                <div class="text-blue-600 mb-4">
+                    <i data-feather="phone" class="w-12 h-12"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Pulsa & Paket Data</h3>
+                <p class="text-gray-600 mb-4">Isi ulang pulsa dan paket data untuk semua operator dengan harga terbaik</p>
+                <ul class="space-y-2 mb-6">
+                    <li class="flex items-center text-gray-600">
+                        <i data-feather="check-circle" class="w-5 h-5 text-green-500 mr-2"></i>
+                        Semua operator
+                    </li>
+                    <li class="flex items-center text-gray-600">
+                        <i data-feather="check-circle" class="w-5 h-5 text-green-500 mr-2"></i>
+                        Proses instan
+                    </li>
+                    <li class="flex items-center text-gray-600">
+                        <i data-feather="check-circle" class="w-5 h-5 text-green-500 mr-2"></i>
+                        Harga termurah
+                    </li>
+                </ul>
+                <a href="isi.html" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors text-center block">
+                    Isi Sekarang
+                </a>
+            </div>
+
+            <!-- Token Listrik Card -->
+            <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
+                <div class="text-blue-600 mb-4">
+                    <i data-feather="zap" class="w-12 h-12"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Token Listrik</h3>
+                <p class="text-gray-600 mb-4">Beli token listrik PLN dengan mudah dan cepat</p>
+                <ul class="space-y-2 mb-6">
+                    <li class="flex items-center text-gray-600">
+                        <i data-feather="check-circle" class="w-5 h-5 text-green-500 mr-2"></i>
+                        Token instan
+                    </li>
+                    <li class="flex items-center text-gray-600">
+                        <i data-feather="check-circle" class="w-5 h-5 text-green-500 mr-2"></i>
+                        24/7 nonstop
+                    </li>
+                    <li class="flex items-center text-gray-600">
+                        <i data-feather="check-circle" class="w-5 h-5 text-green-500 mr-2"></i>
+                        Notifikasi otomatis
+                    </li>
+                </ul>
+                <a href="token.html" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors text-center block">
+                    Beli Token
+                </a>
+            </div>
+
+            <!-- Pembayaran Card -->
+            <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
+                <div class="text-blue-600 mb-4">
+                    <i data-feather="credit-card" class="w-12 h-12"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">Pembayaran Digital</h3>
+                <p class="text-gray-600 mb-4">Bayar tagihan PDAM, BPJS, internet, dan layanan lainnya</p>
+                <ul class="space-y-2 mb-6">
+                    <li class="flex items-center text-gray-600">
+                        <i data-feather="check-circle" class="w-5 h-5 text-green-500 mr-2"></i>
+                        Berbagai tagihan
+                    </li>
+                    <li class="flex items-center text-gray-600">
+                        <i data-feather="check-circle" class="w-5 h-5 text-green-500 mr-2"></i>
+                        Pembayaran aman
+                    </li>
+                    <li class="flex items-center text-gray-600">
+                        <i data-feather="check-circle" class="w-5 h-5 text-green-500 mr-2"></i>
+                        Riwayat lengkap
+                    </li>
+                </ul>
+                <a href="tagihan.html" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors text-center block">
+                    Bayar Tagihan
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Promo Section -->
+    <div id="promo" class="bg-gradient-to-br from-blue-50 to-indigo-50 py-16">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Promo Spesial</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Dapatkan penawaran terbaik untuk berbagai layanan digital PulsaKu</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Promo Card 1 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden group hover:shadow-xl transition-shadow">
+                    <div class="relative">
+                        <img src="/api/placeholder/400/200" alt="Promo 1" class="w-full h-48 object-cover">
+                        <div class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                            Hemat 25%
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Paket Data Unlimited</h3>
+                        <p class="text-gray-600 mb-4">Nikmati internet sepuasnya dengan harga spesial</p>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <span class="text-gray-400 line-through">Rp 100.000</span>
+                                <span class="text-blue-600 font-bold ml-2">Rp 75.000</span>
+                            </div>
+                            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                                Beli
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Promo Card 2 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden group hover:shadow-xl transition-shadow">
+                    <div class="relative">
+                        <img src="/api/placeholder/400/200" alt="Promo 2" class="w-full h-48 object-cover">
+                        <div class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                            Hemat 20%
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Token Listrik Bulanan</h3>
+                        <p class="text-gray-600 mb-4">Token listrik 1 bulan dengan harga spesial</p>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <span class="text-gray-400 line-through">Rp 500.000</span>
+                                <span class="text-blue-600 font-bold ml-2">Rp 400.000</span>
+                            </div>
+                            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                                Beli
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Promo Card 3 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden group hover:shadow-xl transition-shadow">
+                    <div class="relative">
+                        <img src="/api/placeholder/400/200" alt="Promo 3" class="w-full h-48 object-cover">
+                        <div class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                            Hemat 30%
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Paket Telepon</h3>
+                        <p class="text-gray-600 mb-4">Telepon ke semua operator lebih hemat</p>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <span class="text-gray-400 line-through">Rp 50.000</span>
+                                <span class="text-blue-600 font-bold ml-2">Rp 35.000</span>
+                            </div>
+                            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                                Beli
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonials Section -->
+    <div class="max-w-7xl mx-auto px-4 py-16">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold mb-4">Apa Kata Mereka?</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">Pengalaman pelanggan menggunakan layanan PulsaKu</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Testimonial 1 -->
+            <div class="bg-white p-6 rounded-xl shadow-lg">
+                <div class="flex items-center mb-4">
+                    <img src="/api/placeholder/50/50" alt="User 1" class="w-12 h-12 rounded-full">
+                    <div class="ml-4">
+                        <h4 class="font-bold">Ahmad Rizki</h4>
+                        <div class="flex text-yellow-400">
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-gray-600">"Sangat puas dengan layanan PulsaKu. Proses cepat dan harga sangat bersaing. Recommended!"</p>
+            </div>
+
+            <!-- Testimonial 2 -->
+            <div class="bg-white p-6 rounded-xl shadow-lg">
+                <div class="flex items-center mb-4">
+                    <img src="/api/placeholder/50/50" alt="User 2" class="w-12 h-12 rounded-full">
+                    <div class="ml-4">
+                        <h4 class="font-bold">Siti Aminah</h4>
+                        <div class="flex text-yellow-400">
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-gray-600">"Bayar tagihan jadi lebih mudah dengan PulsaKu. Customer service nya ramah dan responsif."</p>
+            </div>
+
+            <!-- Testimonial 3 -->
+            <div class="bg-white p-6 rounded-xl shadow-lg">
+                <div class="flex items-center mb-4">
+                    <img src="/api/placeholder/50/50" alt="User 3" class="w-12 h-12 rounded-full">
+                    <div class="ml-4">
+                        <h4 class="font-bold">Budi Santoso</h4>
+                        <div class="flex text-yellow-400">
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                            <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-gray-600">"Aplikasi yang sangat membantu untuk kebutuhan sehari-hari. Transaksi selalu lancar."</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Download App Section -->
+    <div class="bg-gradient-to-r from-blue-600 to-blue-400 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold mb-4">Download Aplikasi PulsaKu</h2>
+                    <p class="text-xl mb-8 text-blue-100">Nikmati kemudahan bertransaksi dalam genggaman Anda</p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button class="bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-900 transition-colors flex items-center justify-center">
+                            <i data-feather="apple" class="w-6 h-6 mr-2"></i>
+                            App Store
+                        </button>
+                        <button class="bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-900 transition-colors flex items-center justify-center">
+                            <i data-feather="play" class="w-6 h-6 mr-2"></i>
+                            Play Store
+                        </button>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="float-animation">
+                        <img src="/api/placeholder/400/600" alt="Mobile App" class="w-full max-w-sm mx-auto">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <i data-feather="zap" class="w-8 h-8"></i>
+                        <span class="ml-2 text-xl font-bold">PulsaKu</span>
+                    </div>
+                    <p class="text-gray-400">Solusi pembayaran digital terpercaya untuk semua kebutuhan Anda</p>
+                    <div class="flex space-x-4 mt-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i data-feather="facebook" class="w-6 h-6"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i data-feather="twitter" class="w-6 h-6"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i data-feather="instagram" class="w-6 h-6"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Layanan</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Pulsa & Paket Data</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Token Listrik</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">PDAM</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">BPJS</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Internet & TV Kabel</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Perusahaan</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Tentang Kami</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Karir</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Mitra</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Hubungi Kami</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-gray-400">
+                            <i data-feather="mail" class="w-4 h-4 mr-2"></i>
+                            info@pulsaku.com
+                        </li>
+                        <li class="flex items-center text-gray-400">
+                            <i data-feather="phone" class="w-4 h-4 mr-2"></i>
+                            021-1234567
+                        </li>
+                        <li class="flex items-center text-gray-400">
+                            <i data-feather="message-circle" class="w-4 h-4 mr-2"></i>
+                            0812-3456-7890
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 PulsaKu. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Feather Icons
+        feather.replace();
+    </script>
+</body>
+</html>

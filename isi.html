@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isi Pulsa & Paket Data</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs" defer></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="max-w-4xl w-full bg-white p-8 rounded-xl shadow-lg">
+        <h2 class="text-3xl font-bold text-center text-blue-600 mb-6">Isi Pulsa & Paket Data</h2>
+        <p class="text-center text-gray-500 mb-8">Pilih operator dan nominal pulsa dengan mudah dan cepat!</p>
+
+        <form x-data="{ provider: '', nominal: '', phone: '', showSummary: false }" @submit.prevent="showSummary = true" class="space-y-8">
+            <!-- Nomor HP -->
+            <div>
+                <label for="phone" class="block text-sm font-medium text-gray-700">Nomor HP</label>
+                <input type="text" id="phone" x-model="phone" placeholder="Masukkan nomor HP Anda"
+                       class="w-full mt-2 p-3 border rounded-lg focus:ring-blue-500 focus:outline-none">
+            </div>
+
+            <!-- Pilihan Provider -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Pilih Provider</label>
+                <div class="grid grid-cols-3 gap-4">
+                    <button type="button" @click="provider = 'Telkomsel'" :class="provider === 'Telkomsel' ? 'ring-2 ring-blue-500' : ''" 
+                            class="flex flex-col items-center p-4 bg-gray-50 hover:bg-gray-100 rounded-lg shadow">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Logo_telkomsel.svg" alt="Telkomsel" class="w-12 h-12">
+                        <span class="mt-2 text-sm font-medium text-gray-700">Telkomsel</span>
+                    </button>
+                    <button type="button" @click="provider = 'XL'" :class="provider === 'XL' ? 'ring-2 ring-blue-500' : ''" 
+                            class="flex flex-col items-center p-4 bg-gray-50 hover:bg-gray-100 rounded-lg shadow">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/XL_logo_2020.svg" alt="XL" class="w-12 h-12">
+                        <span class="mt-2 text-sm font-medium text-gray-700">XL</span>
+                    </button>
+                    <button type="button" @click="provider = 'Indosat'" :class="provider === 'Indosat' ? 'ring-2 ring-blue-500' : ''" 
+                            class="flex flex-col items-center p-4 bg-gray-50 hover:bg-gray-100 rounded-lg shadow">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Indosat_Ooredoo_Logo_2022.svg" alt="Indosat" class="w-12 h-12">
+                        <span class="mt-2 text-sm font-medium text-gray-700">Indosat</span>
+                    </button>
+                    <button type="button" @click="provider = 'Tri'" :class="provider === 'Tri' ? 'ring-2 ring-blue-500' : ''" 
+                            class="flex flex-col items-center p-4 bg-gray-50 hover:bg-gray-100 rounded-lg shadow">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Hutchison_3G_logo.svg" alt="Tri" class="w-12 h-12">
+                        <span class="mt-2 text-sm font-medium text-gray-700">Tri</span>
+                    </button>
+                    <button type="button" @click="provider = 'Smartfren'" :class="provider === 'Smartfren' ? 'ring-2 ring-blue-500' : ''" 
+                            class="flex flex-col items-center p-4 bg-gray-50 hover:bg-gray-100 rounded-lg shadow">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Smartfren_logo.svg" alt="Smartfren" class="w-12 h-12">
+                        <span class="mt-2 text-sm font-medium text-gray-700">Smartfren</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Pilihan Nominal -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Nominal Pulsa</label>
+                <select x-model="nominal" class="w-full mt-2 p-3 border rounded-lg focus:ring-blue-500 focus:outline-none">
+                    <option value="" disabled selected>Pilih Nominal</option>
+                    <option value="10.000">Rp 10.000</option>
+                    <option value="20.000">Rp 20.000</option>
+                    <option value="50.000">Rp 50.000</option>
+                    <option value="100.000">Rp 100.000</option>
+                    <option value="200.000">Rp 200.000</option>
+                </select>
+            </div>
+
+            <!-- Ringkasan -->
+            <div x-show="showSummary" class="bg-blue-50 p-4 rounded-lg text-gray-700">
+                <h3 class="text-lg font-bold mb-2">Ringkasan Pembelian</h3>
+                <p><strong>Nomor HP:</strong> <span x-text="phone || '---'"></span></p>
+                <p><strong>Provider:</strong> <span x-text="provider || '---'"></span></p>
+                <p><strong>Nominal:</strong> <span x-text="nominal || '---'"></span></p>
+                <p class="text-green-600 font-bold mt-2">Pastikan data sudah benar sebelum melanjutkan.</p>
+            </div>
+
+            <!-- Tombol -->
+            <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition">
+                Isi Pulsa
+            </button>
+        </form>
+    </div>
+</body>
+</html>
